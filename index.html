@@ -11,16 +11,36 @@
 		<!-- CSS -->
 		<link href="css/reset.css" rel="stylesheet">
 		<link href="css/main.css" rel="stylesheet">
-
-		<!-- JS -->
-		<script type="text/javascript" src="rover.js"></script>
 	</head>
 
 	<body>
 		<div class="wrapper">
-			<div class="panelLeft"></div>
-			<div class="panelRight"></div>
+			<div class="panelLeft">
+				<div class="content">
+					<ul class="list">
+						<li>Rover ready!</li>
+					</ul>
+				</div>
+			</div>
+			<div class="panelRight">
+				<div class="content">
+					<h2 class="h2">Run the commands to move the Rover</h2>
+					<ul>
+						<li><span>F</span> (Forward)</li>
+						<li><span>B</span> (Backward)</li>
+						<li><span>R</span> (Right)</li>
+						<li><span>L</span> (Left)</li>
+					</ul>
+					<form name="search" onsubmit="return initRover()" >
+					  <input id="coordinates" type="text" name="coordinates"/>
+					  <input class="submitForm" type="submit" name="Submit" value="Move!"/>
+					</form>
+				</div>
+			</div>
 		</div>
+
+		<!-- JS -->
+		<script type="text/javascript" src="rover.js"></script>
 	</body>
 
 </html>

@@ -1,6 +1,6 @@
 html,body {
-  margin: 0px;
-	padding: 0px;
+  margin: 0;
+	padding: 0;
 	height: 100%;
 }
 body {
@@ -8,7 +8,6 @@ body {
   color: #252525;
   -webkit-font-smoothing: antialiased;
   -webkit-overflow-scrolling: touch;
-  background-color: #dcf27e;
 }
 .wrapper {
   height: 100%;
@@ -17,30 +16,45 @@ body {
   height: 100%;
   width: 75%;
   float: left;
-  background-color: #f4f4f4;
+  background-color: #334559;
+  color: #F3F1F3;
+  overflow-y: auto;
+}
+.panelLeft .content, .panelRight .content  {
+  padding: 20px;
+}
+.panelLeft .content li {
+  margin-bottom: 5px;
+}
+.panelLeft .content ul li.notFound {
+  color: #FF907F;
 }
 .panelRight {
   width: 25%;
-  background-color: #e9e9e9;
+  background-color: #688F5E;
 }
-.panelLeft .grid {
-  width: 250px;
-  height: 250px;
-  margin: auto;
+.panelRight .content .h2  {
+  font-size: 1.4em;
+  margin-bottom: 20px;
 }
-.panelLeft .grid > div {
-	float: left;
-	width: 25px;
-	height: 25px;
-	line-height: 0%;
-	font-size: 0%;
-  -webkit-box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,1);
-  -moz-box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,1);
-  box-shadow: inset 0px 0px 0px 1px rgba(0,0,0,1);
+.panelRight .content ul  {
+  margin-bottom: 20px;
 }
-.rover {
-  width: 15px;
-  height: 15px;
-  background-color: #000;
-  margin: 5px;
+.panelRight .content ul li  {
+  margin-bottom: 5px;
+}
+.panelRight .content ul li span  {
+  color: #252525;
+  font-weight: 700;
+}
+.panelRight .content form input  {
+  height: 30px;
+  width: 100%;
+  margin-bottom: 20px;
+  border: 0;
+  font-size: 1em;
+}
+.panelRight .content form .submitForm  {
+  cursor: pointer;
+  background-color: #FFFEA2;
 }

@@ -6,113 +6,132 @@ var cols = 10;
 var arr = [];
 
 for (i = 0; i < rows; i++) {
-  arr[i] = [];
+  arr[i] = [i];
   for (j = 0; j < cols; j++) {
-    arr[i][j] = 0;
+    arr[i][j] = [j];
   }
 }
 
-//Rover object
 var myRover = {
   position: arr,
-  north: 'N',
-  south: 'S',
-  east: 'E',
-  west: 'W'
+  direction: 'N'
 };
 
-//Forward
+var alertLi = document.getElementsByClassName('list')[0];
+
 function goForward(rover) {
-  switch(rover.north) {
+  switch(rover.direction) {
     case 'N':
       rover.position[0][0]++;
+      if(rover.position[0][0] === 10){
+        rover.position[0][0] = 0;
+      }
       break;
     case 'E':
       rover.position[1][0]++;
+      if(rover.position[1][0] === 10){
+        rover.position[1][0] = 0;
+      }
       break;
     case 'S':
       rover.position[0][0]--;
+      if(rover.position[0][0] === -1){
+        rover.position[0][0] = 9;
+      }
       break;
     case 'W':
       rover.position[1][0]--;
+      if(rover.position[1][0] === -1){
+        rover.position[1][0] = 9;
+      }
       break;
   }
-  console.log("New Rover Position: [" + rover.position[0][0] + ", " + rover.position[1][0] + "]");
+  alertLi.innerHTML += "<li>New Rover Position: [" + rover.position[0][0] + ", " + rover.position[1][0] + "]</li>";
 }
-//Back
-function goBack(rover) {
-  switch(rover.south) {
+function goRight(rover){
+  switch(rover.direction) {
     case 'N':
-      rover.position[0][0]++;
+      rover.direction = 'E';
       break;
     case 'E':
-      rover.position[1][0]++;
+      rover.direction = 'S';
       break;
     case 'S':
-      rover.position[0][0]--;
+      rover.direction = 'W';
       break;
     case 'W':
-      rover.position[1][0]--;
+      rover.direction = 'N';
       break;
   }
-  console.log("New Rover Position: [" + rover.position[0][0] + ", " + rover.position[1][0] + "]");
+  alertLi.innerHTML += "<li>Turn Right</li>";
 }
-//Left
-function goLeft(rover) {
-  switch(rover.west) {
+function goBackward(rover){
+  switch(rover.direction) {
     case 'N':
-      rover.position[0][0]++;
+      rover.position[0][0]--;
+      if(rover.position[0][0] === -1){
+        rover.position[0][0] = 9;
+      }
       break;
     case 'E':
-      rover.position[1][0]++;
+      rover.position[1][0]--;
+      if(rover.position[1][0] === -1){
+        rover.position[1][0] = 9;
+      }
       break;
     case 'S':
-      rover.position[0][0]--;
+      rover.position[0][0]++;
+      if(rover.position[0][0] === 10){
+        rover.position[0][0] = 0;
+      }
       break;
     case 'W':
-      rover.position[1][0]--;
+      rover.position[1][0]++;
+      if(rover.position[1][0] === 10){
+        rover.position[1][0] = 0;
+      }
       break;
   }
-  console.log("New Rover Position: [" + rover.position[0][0] + ", " + rover.position[1][0] + "]");
+  alertLi.innerHTML += "<li>New Rover Position: [" + rover.position[0][0] + ", " + rover.position[1][0] + "]</li>";
 }
-//Right
-function goRight(rover) {
-  switch(rover.east) {
+function goLeft(rover){
+  switch(rover.direction) {
     case 'N':
-      rover.position[0][0]++;
+      rover.direction = 'W';
       break;
     case 'E':
-      rover.position[1][0]++;
+      rover.direction = 'N';
       break;
     case 'S':
-      rover.position[0][0]--;
+      rover.direction = 'E';
       break;
     case 'W':
-      rover.position[1][0]--;
+      rover.direction = 'S';
       break;
   }
-  console.log("New Rover Position: [" + rover.position[0][0] + ", " + rover.position[1][0] + "]");
+  alertLi.innerHTML += "<li>Turn Left</li>";
 }
 
-//Rover init
-var initPrompt = function(){
+function initRover() {
 
-  var userComand = prompt("Dirije tu Mars Rover: F, B, R y L");
+  var valueInput = document.getElementById("coordinates").value;
 
-  for (var i = 0; i < userComand.length; i++) {
-    var count = userComand.charAt(i);
-
+  for (var i = 0; i < valueInput.length; i++) {
+    var count = valueInput.charAt(i);
     if(count === "F" || count === "f") {
       goForward(myRover);
-    }else if(count === "B" || count === "b") {
-      goBack(myRover);
-    }else if(count === "L" || count === "l") {
-      goLeft(myRover);
     }else if(count === "R" || count === "r") {
       goRight(myRover);
+    }else if(count === "B" || count === "b") {
+      goBackward(myRover);
+    }else if(count === "L" || count === "l") {
+      goLeft(myRover);
+    }else{
+      alertLi.innerHTML += "<li class='notFound'>Command not found</li>";
     }
   }
-  
-};
 
-initPrompt();
+  return false;
+}
+
+initRover();
